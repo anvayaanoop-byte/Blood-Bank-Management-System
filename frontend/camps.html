@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Blood Camps - Blood Bank</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <link rel="stylesheet" href="css/camps.css">
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            <div class="logo-icon">🩸</div>
+            <div>
+                <h2>Blood Bank</h2>
+                <span>Management System</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="dashboard.html">📊 <span>Dashboard</span></a>
+            <a href="donors.html">👤 <span>Donors</span></a>
+            <a href="blood-inventory.html">🩸 <span>Blood Inventory</span></a>
+            <a href="requests.html">📋 <span>Blood Requests</span></a>
+            <a href="patients.html">🏥 <span>Patients</span></a>
+            <a href="hospitals.html">🏨 <span>Hospitals</span></a>
+
+            <a href="camps.html" class="active">
+                📅 <span>Blood Camps</span>
+            </a>
+
+            <a href="users.html">👥 <span>Users</span></a>
+            <a href="reports.html">📈 <span>Reports</span></a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+            <a href="#">⚙️ <span>Settings</span></a>
+            <a href="index.html">🚪 <span>Logout</span></a>
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+
+            <div class="topbar-search">
+                🔍
+                <input type="text" placeholder="Search camps...">
+            </div>
+
+            <div class="topbar-right">
+
+                <div class="notification">
+                    🔔
+                    <span class="notification-dot"></span>
+                </div>
+
+                <div class="user-profile">
+
+                    <div class="user-avatar">A</div>
+
+                    <div>
+                        <strong>Admin</strong>
+                        <small>Administrator</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- PAGE CONTENT -->
+        <section class="page-content">
+
+            <div class="page-header">
+
+                <div>
+                    <h1>Blood Camps</h1>
+                    <p>Organize and manage blood donation camps</p>
+                </div>
+
+                <button class="add-btn" onclick="openCampModal()">
+                    + Add Blood Camp
+                </button>
+
+            </div>
+
+
+            <!-- STATS -->
+            <div class="page-stats">
+
+                <div class="mini-card">
+                    <div class="mini-card-icon">📅</div>
+                    <div>
+                        <span>Total Camps</span>
+                        <h3>24</h3>
+                    </div>
+                </div>
+
+                <div class="mini-card">
+                    <div class="mini-card-icon">🟢</div>
+                    <div>
+                        <span>Upcoming Camps</span>
+                        <h3>6</h3>
+                    </div>
+                </div>
+
+                <div class="mini-card">
+                    <div class="mini-card-icon">👥</div>
+                    <div>
+                        <span>Total Donors</span>
+                        <h3>486</h3>
+                    </div>
+                </div>
+
+                <div class="mini-card">
+                    <div class="mini-card-icon">🩸</div>
+                    <div>
+                        <span>Units Collected</span>
+                        <h3>392</h3>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- CAMPS TABLE -->
+            <div class="table-panel camp-table-panel">
+
+                <div class="table-header">
+
+                    <div>
+                        <h2>Donation Camps</h2>
+                        <p>Upcoming and completed blood donation camps</p>
+                    </div>
+
+                    <div class="camp-controls">
+
+                        <input
+                            type="text"
+                            id="campSearch"
+                            placeholder="Search camps..."
+                        >
+
+                        <select id="campStatusFilter">
+                            <option value="all">All Status</option>
+                            <option value="Upcoming">Upcoming</option>
+                            <option value="Ongoing">Ongoing</option>
+                            <option value="Completed">Completed</option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="table-responsive">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>Camp</th>
+                                <th>Date</th>
+                                <th>Location</th>
+                                <th>Organizer</th>
+                                <th>Donors</th>
+                                <th>Units</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="campTableBody">
+
+                            <tr>
+
+                                <td>
+                                    <div class="camp-info">
+
+                                        <div class="camp-avatar">🩸</div>
+
+                                        <div>
+                                            <strong>Community Blood Camp</strong>
+                                            <small>CAMP001</small>
+                                        </div>
+
+                                    </div>
+                                </td>
+
+                                <td>25 Sep 2026</td>
+
+                                <td>Vadakara</td>
+
+                                <td>Red Cross</td>
+
+                                <td>85</td>
+
+                                <td>72</td>
+
+                                <td>
+                                    <span class="camp-status upcoming">
+                                        ● Upcoming
+                                    </span>
+                                </td>
+
+                                <td>
+                                    <div class="camp-actions">
+                                        <button class="camp-action-btn">👁</button>
+                                        <button class="camp-action-btn">✏️</button>
+                                    </div>
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    <div class="camp-info">
+
+                                        <div class="camp-avatar">🩸</div>
+
+                                        <div>
+                                            <strong>College Blood Drive</strong>
+                                            <small>CAMP002</small>
+                                        </div>
+
+                                    </div>
+                                </td>
+
+                                <td>28 Sep 2026</td>
+
+                                <td>Kozhikode</td>
+
+                                <td>CEV NSS Unit</td>
+
+                                <td>120</td>
+
+                                <td>96</td>
+
+                                <td>
+                                    <span class="camp-status upcoming">
+                                        ● Upcoming
+                                    </span>
+                                </td>
+
+                                <td>
+                                    <div class="camp-actions">
+                                        <button class="camp-action-btn">👁</button>
+                                        <button class="camp-action-btn">✏️</button>
+                                    </div>
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    <div class="camp-info">
+
+                                        <div class="camp-avatar">🩸</div>
+
+                                        <div>
+                                            <strong>Community Health Drive</strong>
+                                            <small>CAMP003</small>
+                                        </div>
+
+                                    </div>
+                                </td>
+
+                                <td>18 Sep 2026</td>
+
+                                <td>Kannur</td>
+
+                                <td>Health Department</td>
+
+                                <td>94</td>
+
+                                <td>81</td>
+
+                                <td>
+                                    <span class="camp-status completed">
+                                        ● Completed
+                                    </span>
+                                </td>
+
+                                <td>
+                                    <div class="camp-actions">
+                                        <button class="camp-action-btn">👁</button>
+                                        <button class="camp-action-btn">✏️</button>
+                                    </div>
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    <div class="camp-info">
+
+                                        <div class="camp-avatar">🩸</div>
+
+                                        <div>
+                                            <strong>Emergency Blood Drive</strong>
+                                            <small>CAMP004</small>
+                                        </div>
+
+                                    </div>
+                                </td>
+
+                                <td>12 Sep 2026</td>
+
+                                <td>Vadakara</td>
+
+                                <td>Blood Bank Team</td>
+
+                                <td>76</td>
+
+                                <td>64</td>
+
+                                <td>
+                                    <span class="camp-status completed">
+                                        ● Completed
+                                    </span>
+                                </td>
+
+                                <td>
+                                    <div class="camp-actions">
+                                        <button class="camp-action-btn">👁</button>
+                                        <button class="camp-action-btn">✏️</button>
+                                    </div>
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- ADD CAMP MODAL -->
+
+<div class="modal-overlay" id="campModal">
+
+    <div class="modal">
+
+        <div class="modal-header">
+
+            <div>
+                <h2>Add Blood Camp</h2>
+                <p>Create a new blood donation camp</p>
+            </div>
+
+            <button class="modal-close" onclick="closeCampModal()">
+                ×
+            </button>
+
+        </div>
+
+
+        <form id="campForm">
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label>Camp Name</label>
+
+                    <input
+                        type="text"
+                        id="campName"
+                        placeholder="Enter camp name"
+                        required
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Camp Date</label>
+
+                    <input
+                        type="date"
+                        id="campDate"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label>Location</label>
+
+                    <input
+                        type="text"
+                        id="campLocation"
+                        placeholder="Enter location"
+                        required
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Organizer</label>
+
+                    <input
+                        type="text"
+                        id="campOrganizer"
+                        placeholder="Enter organizer"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Expected Donors</label>
+
+                <input
+                    type="number"
+                    id="expectedDonors"
+                    placeholder="Enter expected donors"
+                    min="1"
+                >
+
+            </div>
+
+
+            <div class="modal-footer">
+
+                <button
+                    type="button"
+                    class="cancel-btn"
+                    onclick="closeCampModal()">
+                    Cancel
+                </button>
+
+                <button type="submit" class="save-btn">
+                    Add Camp
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script src="js/api.js"></script>
+<script src="js/camps.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+.approve-btn,
+.reject-btn,
+.view-btn {
+    border: 0;
+    padding: 6px 9px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-right: 4px;
+    font-size: 11px;
+}
+
+.approve-btn {
+    background: #e5f7eb;
+    color: #15803d;
+}
+
+.reject-btn {
+    background: #fde8ea;
+    color: #c5222f;
+}
+
+.view-btn {
+    background: #f1f3f5;
+    color: #555;
+}
+
+.approve-btn:hover {
+    background: #c9efd6;
+}
+
+.reject-btn:hover {
+    background: #f7cfd3;
+}
+
+.status.completed {
+    background: #e7f0ff;
+    color: #2563eb;
+}
+
+.status.rejected {
+    background: #fde8ea;
+    color: #c5222f;
+}
+
+.single-row {
+    grid-template-columns: 1fr;
+}
+
+.form-row textarea {
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 7px;
+    padding: 11px;
+    resize: vertical;
+    font-family: inherit;
+    outline: none;
+}
+
+.form-row textarea:focus {
+    border-color: #c5222f;
+}

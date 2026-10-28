@@ -1,0 +1,249 @@
+/* =========================================
+   PATIENT MANAGEMENT PAGE
+   ========================================= */
+
+.patient-table-panel {
+    margin-top: 24px;
+}
+
+/* Patient Avatar */
+.patient-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #fee2e2;
+    color: #dc2626;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.patient-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.patient-name {
+    font-weight: 600;
+    color: #111827;
+}
+
+.patient-id {
+    font-size: 12px;
+    color: #9ca3af;
+    margin-top: 3px;
+}
+
+/* Blood Group Badge */
+.blood-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 48px;
+    padding: 6px 10px;
+    border-radius: 20px;
+    background: #fee2e2;
+    color: #dc2626;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+/* Hospital */
+.hospital-name {
+    font-weight: 500;
+    color: #374151;
+}
+
+/* Patient Status */
+.patient-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.patient-status::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: currentColor;
+}
+
+.patient-status.active {
+    background: #dcfce7;
+    color: #16a34a;
+}
+
+.patient-status.pending {
+    background: #fef3c7;
+    color: #d97706;
+}
+
+.patient-status.completed {
+    background: #e0e7ff;
+    color: #4f46e5;
+}
+
+/* Action Buttons */
+.patient-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.patient-action-btn {
+    width: 34px;
+    height: 34px;
+    border: none;
+    border-radius: 8px;
+    background: #f3f4f6;
+    color: #4b5563;
+    transition: 0.2s ease;
+}
+
+.patient-action-btn:hover {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+/* Search and Filter */
+.patient-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.patient-search {
+    flex: 1;
+    position: relative;
+}
+
+.patient-search input {
+    width: 100%;
+    height: 44px;
+    padding: 0 15px;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    outline: none;
+    background: #ffffff;
+    color: #111827;
+}
+
+.patient-search input:focus {
+    border-color: #dc2626;
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.08);
+}
+
+.patient-filter {
+    height: 44px;
+    padding: 0 14px;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    background: #ffffff;
+    color: #374151;
+    outline: none;
+}
+
+.patient-filter:focus {
+    border-color: #dc2626;
+}
+
+/* Empty State */
+.patient-empty {
+    text-align: center;
+    padding: 40px 20px;
+    color: #9ca3af;
+}
+
+.patient-empty-icon {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+/* Modal Form */
+.patient-form-group {
+    margin-bottom: 16px;
+}
+
+.patient-form-group label {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #374151;
+}
+
+.patient-form-group input,
+.patient-form-group select {
+    width: 100%;
+    height: 44px;
+    padding: 0 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    outline: none;
+    background: #fff;
+}
+
+.patient-form-group input:focus,
+.patient-form-group select:focus {
+    border-color: #dc2626;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+
+    .patient-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .patient-search {
+        width: 100%;
+    }
+
+    .patient-filter {
+        width: 100%;
+    }
+
+    .patient-table-panel {
+        overflow-x: auto;
+    }
+
+    .patient-info {
+        min-width: 180px;
+    }
+
+    .patient-actions {
+        min-width: 80px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .patient-avatar {
+        width: 36px;
+        height: 36px;
+        font-size: 12px;
+    }
+
+    .patient-name {
+        font-size: 13px;
+    }
+
+    .patient-id {
+        font-size: 11px;
+    }
+
+    .blood-badge {
+        min-width: 42px;
+        padding: 5px 8px;
+        font-size: 12px;
+    }
+}

@@ -1,0 +1,19 @@
+Blood Bank Management System - Verification Notes
+
+Applied updates in this build:
+- Added js/api.js before page scripts on HTML pages that did not load it.
+- Replaced hospital demo-only form with authenticated API-backed load/save against /api/hospitals.
+- Replaced reports demo alerts with data fetched from /api/reports.
+- Retained request, camp, and profile API-backed flows.
+- Removed Python bytecode cache files from the package.
+
+Checks performed in this environment:
+- Python syntax compilation.
+- JavaScript syntax checks with Node.js.
+- HTML local script/style reference checks.
+- SQLite integrity check on the packaged database.
+
+Limitations:
+- Flask is not installed in this isolated environment and package installation is unavailable, so a live Flask/browser end-to-end test could not be run here.
+- User management (adding users) still contains a demo-mode handler and needs a dedicated secure admin workflow before it can be considered database-integrated.
+- Check that the local project uses the same database.db you intend to demonstrate.

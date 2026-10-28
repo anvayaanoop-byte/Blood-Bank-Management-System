@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Profile - Blood Bank</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/profile.css">
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            <div class="logo-icon">🩸</div>
+
+            <div>
+                <h2>Blood Bank</h2>
+                <span>Management System</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="dashboard.html">
+                📊 <span>Dashboard</span>
+            </a>
+
+            <a href="donors.html">
+                👤 <span>Donors</span>
+            </a>
+
+            <a href="blood-inventory.html">
+                🩸 <span>Blood Inventory</span>
+            </a>
+
+            <a href="requests.html">
+                📋 <span>Blood Requests</span>
+            </a>
+
+            <a href="patients.html">
+                🏥 <span>Patients</span>
+            </a>
+
+            <a href="hospitals.html">
+                🏨 <span>Hospitals</span>
+            </a>
+
+            <a href="camps.html">
+                📅 <span>Blood Camps</span>
+            </a>
+
+            <a href="users.html">
+                👥 <span>Users</span>
+            </a>
+
+            <a href="reports.html">
+                📈 <span>Reports</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <a href="profile.html" class="active">
+                👤 <span>My Profile</span>
+            </a>
+
+            <a href="index.html">
+                🚪 <span>Logout</span>
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN -->
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div class="topbar-search">
+                🔍
+                <input
+                    type="text"
+                    placeholder="Search..."
+                >
+            </div>
+
+            <div class="topbar-right">
+
+                <div class="notification">
+                    🔔
+                    <span class="notification-dot"></span>
+                </div>
+
+                <div class="user-profile">
+
+                    <div class="user-avatar">
+                        A
+                    </div>
+
+                    <div>
+                        <strong>Admin</strong>
+                        <small>Administrator</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- PROFILE -->
+        <section class="profile-page">
+
+            <div class="profile-header">
+
+                <div>
+                    <h1>My Profile</h1>
+                    <p>Manage your account information</p>
+                </div>
+
+            </div>
+
+
+            <div class="profile-container">
+
+                <!-- PROFILE CARD -->
+                <div class="profile-card">
+
+                    <div class="large-avatar">
+                        A
+                    </div>
+
+                    <h2>Admin User</h2>
+
+                    <p class="profile-role">
+                        Administrator
+                    </p>
+
+                    <span class="profile-status">
+                        ● Active
+                    </span>
+
+                </div>
+
+
+                <!-- DETAILS -->
+                <div class="profile-details">
+
+                    <h2>Personal Information</h2>
+
+                    <div class="profile-form">
+
+                        <div class="profile-field">
+
+                            <label>Full Name</label>
+
+                            <input
+                                type="text"
+                                id="profileName"
+                                value="Admin User"
+                            >
+
+                        </div>
+
+
+                        <div class="profile-field">
+
+                            <label>Email</label>
+
+                            <input
+                                type="email"
+                                id="profileEmail"
+                                value="admin@bloodbank.com"
+                            >
+
+                        </div>
+
+
+                        <div class="profile-field">
+
+                            <label>Phone</label>
+
+                            <input
+                                type="tel"
+                                id="profilePhone"
+                                value="+91 98765 43210"
+                            >
+
+                        </div>
+
+
+                        <div class="profile-field">
+
+                            <label>Role</label>
+
+                            <input
+                                type="text"
+                                value="Administrator"
+                                disabled
+                            >
+
+                        </div>
+
+
+                        <div class="profile-field full-width">
+
+                            <label>Address</label>
+
+                            <textarea
+                                id="profileAddress"
+                                rows="4"
+                            >Blood Bank Management System</textarea>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="profile-actions">
+
+                        <button
+                            class="cancel-profile"
+                            onclick="resetProfile()"
+                        >
+                            Cancel
+                        </button>
+
+                        <button
+                            class="save-profile"
+                            onclick="saveProfile()"
+                        >
+                            Save Changes
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="js/api.js"></script>
+<script src="js/profile.js"></script>
+
+</body>
+</html>

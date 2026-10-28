@@ -1,0 +1,162 @@
+/* HOSPITAL MANAGEMENT */
+
+.hospital-table-panel {
+    margin-top: 24px;
+}
+
+.hospital-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.hospital-controls input,
+.hospital-controls select {
+    height: 42px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 0 12px;
+    outline: none;
+    background: white;
+}
+
+.hospital-controls input:focus,
+.hospital-controls select:focus {
+    border-color: #dc2626;
+}
+
+.hospital-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.hospital-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    background: #fee2e2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.hospital-info strong {
+    display: block;
+    color: #111827;
+    font-size: 14px;
+}
+
+.hospital-info small {
+    display: block;
+    color: #9ca3af;
+    font-size: 12px;
+    margin-top: 3px;
+}
+
+.hospital-status {
+    display: inline-flex;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.hospital-status.active {
+    background: #dcfce7;
+    color: #16a34a;
+}
+
+.hospital-status.pending {
+    background: #fef3c7;
+    color: #d97706;
+}
+
+.hospital-status.inactive {
+    background: #f3f4f6;
+    color: #6b7280;
+}
+
+.hospital-actions {
+    display: flex;
+    gap: 7px;
+}
+
+.hospital-action-btn {
+    width: 34px;
+    height: 34px;
+    border: none;
+    border-radius: 8px;
+    background: #f3f4f6;
+    cursor: pointer;
+}
+
+.hospital-action-btn:hover {
+    background: #fee2e2;
+}
+
+/* Modal */
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #374151;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 11px 12px;
+    outline: none;
+    resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #dc2626;
+}
+
+.cancel-btn,
+.save-btn {
+    border: none;
+    padding: 11px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.cancel-btn {
+    background: #f3f4f6;
+    color: #374151;
+}
+
+.save-btn {
+    background: #dc2626;
+    color: white;
+}
+
+.save-btn:hover {
+    background: #b91c1c;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+
+    .hospital-controls {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .table-responsive {
+        overflow-x: auto;
+    }
+
+}

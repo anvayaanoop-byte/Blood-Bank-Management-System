@@ -1,0 +1,889 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Blood Bank Management System</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+
+    <style>
+        .page-section[hidden] {
+            display: none !important;
+        }
+
+        .module-heading {
+            margin: 5px 0 22px;
+        }
+
+        .module-heading h1 {
+            margin: 0 0 8px;
+            font-size: clamp(24px, 3vw, 32px);
+        }
+
+        .module-heading p,
+        .module-note {
+            color: #777;
+            line-height: 1.6;
+        }
+
+        .module-panel {
+            min-width: 0;
+            margin-bottom: 22px;
+            padding: 24px;
+            background: white;
+            border-radius: 14px;
+            box-shadow: 0 4px 14px rgba(0,0,0,.05);
+        }
+
+        .module-panel h2 {
+            margin: 0 0 20px;
+            font-size: 19px;
+        }
+
+        .module-form {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 15px;
+        }
+
+        .module-form input,
+        .module-form select,
+        .module-form textarea {
+            width: 100%;
+            min-width: 0;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font: inherit;
+            box-sizing: border-box;
+        }
+
+        .module-form button,
+        .module-action,
+        .settings-card button {
+            padding: 11px 16px;
+            border: none;
+            border-radius: 8px;
+            background: #941725;
+            color: white;
+            font: inherit;
+            cursor: pointer;
+        }
+
+        .module-form button:hover,
+        .module-action:hover,
+        .settings-card button:hover {
+            background: #72101b;
+        }
+
+        .module-table-wrap {
+            width: 100%;
+            max-width: 100%;
+            overflow-x: auto;
+        }
+
+        .module-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .module-table th,
+        .module-table td {
+            padding: 13px 10px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .module-table th {
+            background: #fff4f5;
+            color: #777;
+            white-space: nowrap;
+        }
+
+        .module-message {
+            margin-top: 12px;
+            line-height: 1.5;
+        }
+
+        .module-output {
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+        }
+
+        /* Settings */
+        .settings-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .settings-card {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 13px;
+            min-width: 0;
+            padding: 24px;
+            background: white;
+            border: 1px solid #f0e7e8;
+            border-radius: 14px;
+            box-shadow: 0 4px 14px rgba(0,0,0,.04);
+        }
+
+        .settings-icon {
+            width: 48px;
+            height: 48px;
+            display: grid;
+            place-items: center;
+            background: #fff0f2;
+            color: #941725;
+            border-radius: 12px;
+            font-size: 24px;
+        }
+
+        .settings-card h2 {
+            margin: 0 0 8px;
+            font-size: 18px;
+        }
+
+        .settings-card p {
+            margin: 0;
+            color: #777;
+            line-height: 1.6;
+        }
+
+        .settings-card small {
+            color: #777;
+        }
+
+        .settings-card select {
+            width: 100%;
+            max-width: 300px;
+            padding: 11px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: white;
+        }
+
+        .settings-toggle {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #555;
+        }
+
+        .settings-toggle input {
+            width: 17px;
+            height: 17px;
+            accent-color: #941725;
+        }
+
+        .settings-message {
+            color: #287747;
+            font-size: 13px;
+        }
+
+        @media (max-width: 650px) {
+            .settings-grid,
+            .module-form {
+                grid-template-columns: 1fr;
+            }
+
+            .module-panel,
+            .settings-card {
+                padding: 17px;
+            }
+        }
+    
+        #sidebarNav a.role-hidden { display: none !important; }
+    </style>
+</head>
+
+<body>
+<div class="dashboard">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="blood-logo">♥</div>
+            <div>
+                <h2>Blood Bank</h2>
+                <span>Management System</span>
+            </div>
+        </div>
+
+        <nav id="sidebarNav">
+            <a class="active" href="#dashboard" data-section="dashboard">
+                <span>⌂</span> Dashboard
+            </a>
+            <a href="#donors" data-section="donors">
+                <span>♟</span> Donors
+            </a>
+            <a href="#inventory" data-section="inventory">
+                <span>🩸</span> Blood Inventory
+            </a>
+            <a href="#requests" data-section="requests">
+                <span>▣</span> Blood Requests
+            </a>
+            <a href="#patients" data-section="patients">
+                <span>●</span> Patients
+            </a>
+            <a href="#hospitals" data-section="hospitals">
+                <span>▥</span> Hospitals
+            </a>
+            <a href="#camps" data-section="camps">
+                <span>▦</span> Blood Camps
+            </a>
+            <a href="#users" data-section="users">
+                <span>♣</span> Users
+            </a>
+            <a href="#reports" data-section="reports">
+                <span>▤</span> Reports
+            </a>
+            <a href="#appointments" data-section="appointments">
+                <span>🗓</span> Appointments
+            </a>
+            <a href="#blood-banks" data-section="blood-banks">
+                <span>⌖</span> Nearby Blood Banks
+            </a>
+            <a href="#settings" data-section="settings">
+                <span>⚙</span> Settings
+            </a>
+        </nav>
+
+        <div class="donate-box">
+            <div class="drop-big">♥</div>
+            <h3>Donate Blood</h3>
+            <p>Save Lives</p>
+            <button type="button" data-go-section="camps">
+                Find a Camp
+            </button>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- HEADER -->
+        <header class="topbar">
+            <button type="button" class="mobile-menu" id="mobileMenu"
+                    aria-label="Toggle navigation">☰</button>
+
+            <div class="search-box">
+                🔍
+                <input type="search" id="globalSearch"
+                       placeholder="Search here...">
+            </div>
+
+            <div class="user-area">
+                <span class="notification">🔔</span>
+                <div class="avatar">A</div>
+                <span id="userName">Admin</span>
+                <span>⌄</span>
+            </div>
+        </header>
+
+        <!-- DASHBOARD -->
+        <section id="dashboard" class="page-section">
+
+            <section class="welcome">
+                <div>
+                    <p class="welcome-small">WELCOME BACK,</p>
+                    <h1>Admin!</h1>
+                    <p>Together we can make a difference.</p>
+                </div>
+                <div class="welcome-blood">
+                    <div class="large-drop">♥</div>
+                    <div><strong>A Drop</strong><br>Can Save<br>a Life</div>
+                </div>
+            </section>
+
+            <section class="stats">
+                <div class="stat-card">
+                    <div class="stat-icon">♟</div>
+                    <div>
+                        <span>Total Donors</span>
+                        <h2 id="totalDonors">0</h2>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🩸</div>
+                    <div>
+                        <span>Blood Units</span>
+                        <h2 id="totalUnits">0</h2>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">▣</div>
+                    <div>
+                        <span>Pending Requests</span>
+                        <h2 id="pendingRequests">0</h2>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">▥</div>
+                    <div>
+                        <span>Hospitals</span>
+                        <h2 id="totalHospitals">0</h2>
+                    </div>
+                </div>
+            </section>
+
+            <section class="charts">
+                <div class="panel inventory">
+                    <div class="panel-header">
+                        <h2>🩸 Blood Inventory</h2>
+                        <a href="#inventory" data-go-section="inventory">View All</a>
+                    </div>
+                    <div class="chart" id="inventoryChart">
+                        <p>Inventory data will load from the database.</p>
+                    </div>
+                </div>
+
+                <div class="panel distribution">
+                    <div class="panel-header">
+                        <h2>Blood Group Distribution</h2>
+                    </div>
+                    <div class="donut">
+                        <div class="donut-center">
+                            <span id="distributionUnits">0</span>
+                            <small>Units</small>
+                        </div>
+                    </div>
+                    <div class="legend">
+                        <span>A+</span><span>A-</span>
+                        <span>B+</span><span>B-</span>
+                        <span>AB+</span><span>AB-</span>
+                        <span>O+</span><span>O-</span>
+                    </div>
+                </div>
+
+                <div class="panel quote">
+                    <div class="quote-heart">♥</div>
+                    <h2>“Blood connects us all.”</h2>
+                    <p>Be a hero. Donate blood.</p>
+                    <button type="button" data-go-section="camps">Find a Camp</button>
+                </div>
+            </section>
+
+            <section class="bottom-grid">
+                <div class="panel table-panel">
+                    <div class="panel-header">
+                        <h2>Recent Donors</h2>
+                        <a href="#donors" data-go-section="donors">View All</a>
+                    </div>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr><th>Name</th><th>Blood Group</th><th>Phone</th><th>Status</th></tr>
+                            </thead>
+                            <tbody id="recentDonorsTable">
+                                <tr><td colspan="4">Loading donors...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="panel table-panel">
+                    <div class="panel-header">
+                        <h2>Recent Blood Requests</h2>
+                        <a href="#requests" data-go-section="requests">View All</a>
+                    </div>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr><th>Patient</th><th>Group</th><th>Units</th><th>Status</th></tr>
+                            </thead>
+                            <tbody id="recentRequestsTable">
+                                <tr><td colspan="4">Loading requests...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- DONORS -->
+        <section id="donors" class="page-section" hidden>
+            <div class="module-heading">
+                <h1>♟ Donor Management</h1>
+                <p>Register donors and view donor records.</p>
+            </div>
+            <div class="module-panel">
+                <h2>Register a Donor</h2>
+                <form id="donorForm" class="module-form">
+                    <input name="name" placeholder="Full name" required>
+                    <input name="email" type="email" placeholder="Email address">
+                    <input name="phone" placeholder="Phone number" required>
+                    <select name="blood_group" required>
+                        <option value="">Select blood group</option>
+                        <option>A+</option><option>A-</option><option>B+</option><option>B-</option>
+                        <option>AB+</option><option>AB-</option><option>O+</option><option>O-</option>
+                    </select>
+                    <input name="age" type="number" min="18" placeholder="Age">
+                    <input name="city" placeholder="City">
+                    <button type="submit">Register Donor</button>
+                </form>
+                <p id="donorMessage" class="module-message"></p>
+            </div>
+            <div class="module-panel">
+                <h2>Donor Records</h2>
+                <div class="module-table-wrap">
+                    <table class="module-table">
+                        <thead>
+                            <tr><th>ID</th><th>Name</th><th>Blood Group</th><th>Phone</th><th>Email</th></tr>
+                        </thead>
+                        <tbody id="donorsTable">
+                            <tr><td colspan="5">Records will appear here.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- BLOOD INVENTORY -->
+        <section id="inventory" class="page-section" hidden>
+            <div class="module-heading">
+                <h1>🩸 Blood Inventory</h1>
+                <p>Manage available blood stock.</p>
+            </div>
+            <div class="module-panel">
+                <h2>Add Blood Stock</h2>
+                <form id="inventoryForm" class="module-form">
+                    <select name="blood_group" required>
+                        <option value="">Select blood group</option>
+                        <option>A+</option><option>A-</option><option>B+</option><option>B-</option>
+                        <option>AB+</option><option>AB-</option><option>O+</option><option>O-</option>
+                    </select>
+                    <input name="units" type="number" min="1" placeholder="Number of units" required>
+                    <input name="hospital_id" type="number" placeholder="Hospital ID (optional)">
+                    <button type="submit">Add Stock</button>
+                </form>
+                <p id="inventoryMessage" class="module-message"></p>
+            </div>
+            <div class="module-panel">
+                <h2>Available Stock</h2>
+                <div class="module-table-wrap">
+                    <table class="module-table">
+                        <thead><tr><th>Blood Group</th><th>Units</th></tr></thead>
+                        <tbody id="inventoryTable">
+                            <tr><td colspan="2">Inventory records will appear here.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- BLOOD REQUESTS -->
+        <section id="requests" class="page-section" hidden>
+            <div class="module-heading">
+                <h1>▣ Blood Requests</h1>
+                <p>Submit and manage blood requests.</p>
+            </div>
+            <div class="module-panel">
+                <h2>New Blood Request</h2>
+                <form id="requestForm" class="module-form">
+                    <input name="patient_name" placeholder="Patient name" required>
+                    <select name="blood_group" required>
+                        <option value="">Required blood group</option>
+                        <option>A+</option><option>A-</option><option>B+</option><option>B-</option>
+                        <option>AB+</option><option>AB-</option><option>O+</option><option>O-</option>
+                    </select>
+                    <input name="units" type="number" min="1" placeholder="Units required" required>
+                    <input name="hospital" placeholder="Hospital name" required>
+                    <input name="contact" placeholder="Contact number">
+                    <button type="submit">Submit Request</button>
+                </form>
+                <p id="requestMessage" class="module-message"></p>
+            </div>
+            <div class="module-panel">
+                <h2>Request Records</h2>
+                <div class="module-table-wrap">
+                    <table class="module-table">
+                        <thead>
+                            <tr><th>ID</th><th>Patient</th><th>Group</th><th>Units</th><th>Hospital</th><th>Status</th></tr>
+                        </thead>
+                        <tbody id="requestsTable">
+                            <tr><td colspan="6">Request records will appear here.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- PATIENTS -->
+        <section id="patients" class="page-section" hidden>
+            <div class="module-heading">
+                <h1>Patients</h1>
+                <p>Patient records and blood requirements.</p>
+            </div>
+            <div class="module-panel">
+                <h2>Patient Records</h2>
+                <div class="module-table-wrap">
+                    <table class="module-table">
+                        <thead>
+                            <tr><th>ID</th><th>Name</th><th>Blood Group</th><th>Hospital</th><th>Contact</th></tr>
+                        </thead>
+                        <tbody id="patientsTable">
+                            <tr><td colspan="5">Patient records will appear here.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- HOSPITALS -->
+        <section id="hospitals" class="page-section" hidden>
+            <div class="module-heading">
+                <h1>Hospitals</h1>
+                <p>Registered hospital information.</p>
+            </div>
+            <div class="module-panel">
+                <h2>Hospital Records</h2>
+                <div class="module-table-wrap">
+                    <table class="module-table">
+                        <thead>
+                            <tr><th>ID</th><th>Name</th><th>City</th><th>Phone</th><th>Address</th></tr>
+                        </thead>
+                        <tbody id="hospitalsTable">
+                            <tr><td colspan="5">Hospital records will appear here.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- BLOOD CAMPS -->
+        <section id="camps" class="page-section" hidden>
+            <div class="module-heading">
+                <h1>Blood Camps</h1>
+                <p>Donation camps and events.</p>
+            </div>
+            <div class="module-panel">
+                <h2>Blood Camp Records</h2>
+                <div class="module-table-wrap">
+                    <table class="module-table">
+                        <thead>
+                            <tr><th>ID</th><th>Camp Name</th><th>Date</th><th>Location</th><th>Contact</th></tr>
+                        </thead>
+                        <tbody id="campsTable">
+                            <tr><td colspan="5">Camp records will appear here.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- USERS -->
+        <section id="users" class="page-section" hidden>
+            <div class="module-heading">
+                <h1>User Management</h1>
+                <p>View accounts registered in the system.</p>
+            </div>
+            <div class="module-panel">
+                <h2>Registered Users</h2>
+                <div class="module-table-wrap">
+                    <table class="module-table">
+                        <thead>
+                            <tr><th>ID</th><th>Name</th><th>Email</th><th>Role</th><th>Created At</th></tr>
+                        </thead>
+                        <tbody id="usersTable">
+                            <tr><td colspan="5">User records will appear here.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- REPORTS -->
+        <section id="reports" class="page-section" hidden>
+            <div class="module-heading">
+                <h1>Reports</h1>
+                <p>Review blood bank statistics and reports.</p>
+            </div>
+            <div class="module-panel">
+                <h2>System Report</h2>
+                <button type="button" class="module-action" id="loadReportsBtn">Load Report</button>
+                <p id="reportsMessage" class="module-message"></p>
+                <pre id="reportsOutput" class="module-output"></pre>
+            </div>
+        </section>
+
+        <!-- APPOINTMENTS -->
+        <section id="appointments" class="page-section" hidden>
+            <div class="module-heading">
+                <h1>Appointments</h1>
+                <p>Book a blood donation appointment.</p>
+            </div>
+            <div class="module-panel">
+                <h2>Book Appointment</h2>
+                <form id="appointmentForm" class="module-form">
+                    <input name="donor_name" placeholder="Donor name" required>
+                    <input name="phone" type="tel" placeholder="Phone number (10-15 digits)" required>
+                    <input name="email" type="email" placeholder="Email (optional)">
+                    <label for="donationBloodGroup">Blood group</label>
+                    <select id="donationBloodGroup" name="blood_group" required>
+                        <option value="">Choose blood group</option>
+                        <option>A+</option><option>A-</option><option>B+</option><option>B-</option>
+                        <option>AB+</option><option>AB-</option><option>O+</option><option>O-</option>
+                    </select>
+                    <input name="appointment_date" type="date" required>
+                    <input name="appointment_time" type="time" required>
+                    <input name="location" placeholder="Preferred blood bank / location">
+                    <button type="submit">Register for Donation</button>
+                </form>
+                <p id="appointmentMessage" class="module-message"></p>
+            </div>
+            <div class="module-panel">
+                <h2>Appointment Records</h2>
+                <div class="module-table-wrap">
+                    <table class="module-table">
+                        <thead>
+                            <tr><th>ID</th><th>Donor</th><th>Date</th><th>Time</th><th>Location</th><th>Status</th></tr>
+                        </thead>
+                        <tbody id="appointmentsTable">
+                            <tr><td colspan="6">Appointment records will appear here.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEARBY BLOOD BANKS -->
+        <section id="blood-banks" class="page-section" hidden>
+            <div class="module-heading">
+                <h1>Nearby Blood Banks</h1>
+                <p>Search for blood banks by city.</p>
+            </div>
+            <div class="module-panel">
+                <h2>Find a Blood Bank</h2>
+                <form id="bloodBankSearchForm" class="module-form">
+                    <input name="city" placeholder="Enter city" required>
+                    <button type="submit">Search Blood Banks</button>
+                </form>
+                <p id="bloodBankMessage" class="module-message"></p>
+            </div>
+            <div class="module-panel">
+                <h2>Register a Blood Bank</h2>
+                <form id="bloodBankForm" class="module-form">
+                    <input name="name" placeholder="Blood bank name" required>
+                    <input name="phone" type="tel" placeholder="Phone number">
+                    <input name="email" type="email" placeholder="Email">
+                    <input name="address" placeholder="Address">
+                    <input name="city" placeholder="City" required>
+                    <input name="state" placeholder="State">
+                    <input name="opening_hours" placeholder="Opening hours (e.g. 9 AM–5 PM)">
+                    <button type="submit">Save Blood Bank</button>
+                </form>
+                <p id="bloodBankSaveMessage" class="module-message"></p>
+            </div>
+            <div class="module-panel">
+                <h2>Search Results</h2>
+                <div class="module-table-wrap">
+                    <table class="module-table">
+                        <thead><tr><th>Name</th><th>City</th><th>Address</th><th>Phone</th></tr></thead>
+                        <tbody id="bloodBanksTable">
+                            <tr><td colspan="4">Search for a city to view results.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- SETTINGS -->
+        <section id="settings" class="page-section" hidden>
+            <div class="module-heading">
+                <h1>⚙ Settings</h1>
+                <p>Manage your account and application preferences.</p>
+            </div>
+
+            <div class="settings-grid">
+
+                <div class="settings-card">
+                    <div class="settings-icon">👤</div>
+                    <div>
+                        <h2>Profile Settings</h2>
+                        <p>View and update your account information.</p>
+                    </div>
+                    <button type="button" id="editProfileBtn">Edit Profile</button>
+                    <p id="profileMessage" class="settings-message"></p>
+                </div>
+
+                <div class="settings-card">
+                    <div class="settings-icon">🔔</div>
+                    <div>
+                        <h2>Notifications</h2>
+                        <p>Choose whether to enable application notifications.</p>
+                    </div>
+                    <label class="settings-toggle">
+                        <input type="checkbox" id="notificationsToggle" checked>
+                        <span>Enable notifications</span>
+                    </label>
+                    <p id="notificationMessage" class="settings-message"></p>
+                </div>
+
+                <div class="settings-card">
+                    <div class="settings-icon">🔒</div>
+                    <div>
+                        <h2>Security</h2>
+                        <p>Manage your account password and security.</p>
+                    </div>
+                    <button type="button" id="changePasswordBtn">Change Password</button>
+                    <p id="securityMessage" class="settings-message"></p>
+                </div>
+
+                <div class="settings-card">
+                    <div class="settings-icon">🩸</div>
+                    <div>
+                        <h2>Blood Bank Preferences</h2>
+                        <p>Select your preferred blood group for searches.</p>
+                    </div>
+                    <select id="preferredBloodGroup">
+                        <option value="">Select blood group</option>
+                        <option>A+</option><option>A-</option>
+                        <option>B+</option><option>B-</option>
+                        <option>AB+</option><option>AB-</option>
+                        <option>O+</option><option>O-</option>
+                    </select>
+                    <p id="preferenceMessage" class="settings-message"></p>
+                </div>
+
+                <div class="settings-card">
+                    <div class="settings-icon">ℹ️</div>
+                    <div>
+                        <h2>About Application</h2>
+                        <p>Smart Blood Bank Management System</p>
+                        <small>Version 1.0</small>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/dashboard.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const links = document.querySelectorAll("#sidebarNav a[data-section]");
+    const sections = document.querySelectorAll(".page-section");
+    const sidebar = document.querySelector(".sidebar");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    // Role-based sidebar visibility. This controls the UI only; enforce permissions in Flask too.
+    function applyRolePermissions() {
+        let user = null;
+        try { user = JSON.parse(localStorage.getItem("user") || "null"); } catch (_) {}
+        const role = String(user?.role || user?.user_role || localStorage.getItem("role") || "donor").trim().toLowerCase();
+        const hiddenByRole = {
+            donor: ["inventory", "donors", "hospitals", "users", "reports"],
+            hospital: ["inventory", "reports", "users"],
+            staff: []
+        };
+        // Treat administrator/admin as staff with access to every section.
+        const hidden = (role === "admin" || role === "administrator")
+            ? []
+            : (hiddenByRole[role] ?? hiddenByRole.donor);
+        links.forEach(link => {
+            const sectionId = link.dataset.section;
+            link.classList.toggle("role-hidden", hidden.includes(sectionId));
+        });
+        // Hide the donate-camp shortcut for hospital users only if the camp section is unavailable.
+        document.querySelectorAll("[data-go-section]").forEach(item => {
+            item.hidden = hidden.includes(item.dataset.goSection);
+        });
+        return { role, hidden };
+    }
+
+    const roleAccess = applyRolePermissions();
+
+    function showSection(id) {
+        const target = document.getElementById(id);
+
+        if (!target || !target.classList.contains("page-section")) {
+            id = "dashboard";
+        }
+        const targetLink = document.querySelector(`#sidebarNav a[data-section="${id}"]`);
+        if (targetLink && targetLink.classList.contains("role-hidden")) {
+            id = "dashboard";
+        }
+
+        sections.forEach(function (section) {
+            section.hidden = section.id !== id;
+        });
+
+        links.forEach(function (link) {
+            link.classList.toggle("active", link.dataset.section === id);
+        });
+
+        if (location.hash !== "#" + id) {
+            history.replaceState(null, "", "#" + id);
+        }
+
+        if (sidebar) sidebar.classList.remove("show-sidebar");
+
+        if (typeof window.loadModuleData === "function") {
+            window.loadModuleData(id);
+        }
+    }
+
+    links.forEach(function (link) {
+        link.addEventListener("click", function (event) {
+            event.preventDefault();
+            showSection(this.dataset.section);
+        });
+    });
+
+    document.querySelectorAll("[data-go-section]").forEach(function (item) {
+        item.addEventListener("click", function (event) {
+            event.preventDefault();
+            showSection(this.dataset.goSection);
+        });
+    });
+
+    if (mobileMenu && sidebar) {
+        mobileMenu.addEventListener("click", function () {
+            sidebar.classList.toggle("show-sidebar");
+        });
+    }
+
+    window.addEventListener("hashchange", function () {
+        showSection(location.hash.slice(1) || "dashboard");
+    });
+
+    // Settings interactions
+    const notificationsToggle = document.getElementById("notificationsToggle");
+    notificationsToggle.addEventListener("change", function () {
+        document.getElementById("notificationMessage").textContent =
+            this.checked ? "Notifications enabled for this page." :
+                           "Notifications disabled for this page.";
+    });
+
+    const preferredBloodGroup = document.getElementById("preferredBloodGroup");
+    preferredBloodGroup.addEventListener("change", function () {
+        document.getElementById("preferenceMessage").textContent =
+            this.value ? "Preferred blood group: " + this.value :
+                         "No preferred blood group selected.";
+    });
+
+    document.getElementById("editProfileBtn").addEventListener("click", function () {
+        document.getElementById("profileMessage").textContent =
+            "Profile editing needs to be connected to your account API.";
+    });
+
+    document.getElementById("changePasswordBtn").addEventListener("click", function () {
+        document.getElementById("securityMessage").textContent =
+            "Password changes need a secure backend endpoint.";
+    });
+
+    showSection(location.hash.slice(1) || "dashboard");
+});
+</script>
+</body>
+</html>

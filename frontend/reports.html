@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Reports - Blood Bank</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <link rel="stylesheet" href="css/reports.css">
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            <div class="logo-icon">🩸</div>
+
+            <div>
+                <h2>Blood Bank</h2>
+                <span>Management System</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="dashboard.html">📊 <span>Dashboard</span></a>
+            <a href="donors.html">👤 <span>Donors</span></a>
+            <a href="blood-inventory.html">🩸 <span>Blood Inventory</span></a>
+            <a href="requests.html">📋 <span>Blood Requests</span></a>
+            <a href="patients.html">🏥 <span>Patients</span></a>
+            <a href="hospitals.html">🏨 <span>Hospitals</span></a>
+            <a href="camps.html">📅 <span>Blood Camps</span></a>
+            <a href="users.html">👥 <span>Users</span></a>
+
+            <a href="reports.html" class="active">
+                📈 <span>Reports</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+            <a href="#">⚙️ <span>Settings</span></a>
+            <a href="index.html">🚪 <span>Logout</span></a>
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN -->
+    <main class="main-content">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+
+            <div class="topbar-search">
+                🔍
+                <input
+                    type="text"
+                    placeholder="Search reports..."
+                >
+            </div>
+
+            <div class="topbar-right">
+
+                <div class="notification">
+                    🔔
+                    <span class="notification-dot"></span>
+                </div>
+
+                <div class="user-profile">
+
+                    <div class="user-avatar">
+                        A
+                    </div>
+
+                    <div>
+                        <strong>Admin</strong>
+                        <small>Administrator</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- PAGE CONTENT -->
+        <section class="page-content">
+
+            <div class="page-header">
+
+                <div>
+                    <h1>Reports & Analytics</h1>
+                    <p>View blood bank statistics and system reports</p>
+                </div>
+
+                <button
+                    class="add-btn"
+                    onclick="generateReport()"
+                >
+                    📄 Generate Report
+                </button>
+
+            </div>
+
+
+            <!-- STATISTICS -->
+
+            <div class="page-stats">
+
+                <div class="mini-card">
+
+                    <div class="mini-card-icon">
+                        👥
+                    </div>
+
+                    <div>
+                        <span>Total Donors</span>
+                        <h3>125</h3>
+                    </div>
+
+                </div>
+
+
+                <div class="mini-card">
+
+                    <div class="mini-card-icon">
+                        🩸
+                    </div>
+
+                    <div>
+                        <span>Blood Units</span>
+                        <h3>320</h3>
+                    </div>
+
+                </div>
+
+
+                <div class="mini-card">
+
+                    <div class="mini-card-icon">
+                        📋
+                    </div>
+
+                    <div>
+                        <span>Requests</span>
+                        <h3>48</h3>
+                    </div>
+
+                </div>
+
+
+                <div class="mini-card">
+
+                    <div class="mini-card-icon">
+                        🏥
+                    </div>
+
+                    <div>
+                        <span>Hospitals</span>
+                        <h3>12</h3>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- REPORT CARDS -->
+
+            <div class="reports-grid">
+
+                <div class="report-card">
+
+                    <div class="report-card-header">
+
+                        <div>
+                            <h2>Blood Collection</h2>
+                            <p>Monthly blood collection</p>
+                        </div>
+
+                        <span class="report-icon">
+                            🩸
+                        </span>
+
+                    </div>
+
+
+                    <div class="chart-placeholder">
+
+                        <div class="bar-chart">
+
+                            <div class="bar" style="height:45%">
+                                <span>Apr</span>
+                            </div>
+
+                            <div class="bar" style="height:65%">
+                                <span>May</span>
+                            </div>
+
+                            <div class="bar" style="height:55%">
+                                <span>Jun</span>
+                            </div>
+
+                            <div class="bar" style="height:80%">
+                                <span>Jul</span>
+                            </div>
+
+                            <div class="bar" style="height:70%">
+                                <span>Aug</span>
+                            </div>
+
+                            <div class="bar" style="height:90%">
+                                <span>Sep</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="report-card">
+
+                    <div class="report-card-header">
+
+                        <div>
+                            <h2>Blood Requests</h2>
+                            <p>Request status overview</p>
+                        </div>
+
+                        <span class="report-icon">
+                            📋
+                        </span>
+
+                    </div>
+
+
+                    <div class="request-report">
+
+                        <div class="report-row">
+
+                            <span>Completed</span>
+
+                            <div class="progress">
+                                <div
+                                    class="progress-fill completed"
+                                    style="width:70%">
+                                </div>
+                            </div>
+
+                            <strong>70%</strong>
+
+                        </div>
+
+
+                        <div class="report-row">
+
+                            <span>Approved</span>
+
+                            <div class="progress">
+                                <div
+                                    class="progress-fill approved"
+                                    style="width:55%">
+                                </div>
+                            </div>
+
+                            <strong>55%</strong>
+
+                        </div>
+
+
+                        <div class="report-row">
+
+                            <span>Pending</span>
+
+                            <div class="progress">
+                                <div
+                                    class="progress-fill pending"
+                                    style="width:35%">
+                                </div>
+                            </div>
+
+                            <strong>35%</strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- BLOOD GROUP REPORT -->
+
+            <div class="table-panel report-table-panel">
+
+                <div class="table-header">
+
+                    <div>
+                        <h2>Blood Group Summary</h2>
+                        <p>Current blood inventory by blood group</p>
+                    </div>
+
+                    <select id="reportPeriod">
+
+                        <option value="month">
+                            This Month
+                        </option>
+
+                        <option value="quarter">
+                            This Quarter
+                        </option>
+
+                        <option value="year">
+                            This Year
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="table-responsive">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>Blood Group</th>
+                                <th>Available Units</th>
+                                <th>Donations</th>
+                                <th>Requests</th>
+                                <th>Issued Units</th>
+                                <th>Status</th>
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+                            <tr>
+
+                                <td>
+                                    <span class="blood-report-badge">
+                                        A+
+                                    </span>
+                                </td>
+
+                                <td>68</td>
+                                <td>42</td>
+                                <td>28</td>
+                                <td>35</td>
+
+                                <td>
+                                    <span class="report-status good">
+                                        Good
+                                    </span>
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    <span class="blood-report-badge">
+                                        A-
+                                    </span>
+                                </td>
+
+                                <td>24</td>
+                                <td>18</td>
+                                <td>12</td>
+                                <td>16</td>
+
+                                <td>
+                                    <span class="report-status good">
+                                        Good
+                                    </span>
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    <span class="blood-report-badge">
+                                        B+
+                                    </span>
+                                </td>
+
+                                <td>55</td>
+                                <td>35</td>
+                                <td>21</td>
+                                <td>29</td>
+
+                                <td>
+                                    <span class="report-status good">
+                                        Good
+                                    </span>
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    <span class="blood-report-badge">
+                                        O+
+                                    </span>
+                                </td>
+
+                                <td>92</td>
+                                <td>58</td>
+                                <td>36</td>
+                                <td>44</td>
+
+                                <td>
+                                    <span class="report-status high">
+                                        High
+                                    </span>
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    <span class="blood-report-badge">
+                                        O-
+                                    </span>
+                                </td>
+
+                                <td>12</td>
+                                <td>9</td>
+                                <td>15</td>
+                                <td>18</td>
+
+                                <td>
+                                    <span class="report-status low">
+                                        Low
+                                    </span>
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <!-- QUICK REPORTS -->
+
+            <div class="quick-reports">
+
+                <h2>Quick Reports</h2>
+
+                <div class="quick-report-grid">
+
+                    <button onclick="showReport('Donor Report')">
+                        👥
+                        <span>Donor Report</span>
+                    </button>
+
+                    <button onclick="showReport('Inventory Report')">
+                        🩸
+                        <span>Inventory Report</span>
+                    </button>
+
+                    <button onclick="showReport('Request Report')">
+                        📋
+                        <span>Request Report</span>
+                    </button>
+
+                    <button onclick="showReport('Hospital Report')">
+                        🏥
+                        <span>Hospital Report</span>
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="js/api.js"></script>
+<script src="js/reports.js"></script>
+
+</body>
+</html>

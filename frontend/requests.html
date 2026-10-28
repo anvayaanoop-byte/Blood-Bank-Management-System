@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Blood Requests - Blood Bank</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <link rel="stylesheet" href="css/request.css">
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="blood-logo">♥</div>
+
+            <div>
+                <h2>Blood Bank</h2>
+                <span>Management System</span>
+            </div>
+
+        </div>
+
+        <nav>
+
+            <a href="dashboard.html">
+                <span>⌂</span>
+                Dashboard
+            </a>
+
+            <a href="donors.html">
+                <span>♟</span>
+                Donors
+            </a>
+
+            <a href="blood-inventory.html">
+                <span>🩸</span>
+                Blood Inventory
+            </a>
+
+            <a class="active" href="requests.html">
+                <span>▣</span>
+                Blood Requests
+            </a>
+
+            <a href="#">
+                <span>●</span>
+                Patients
+            </a>
+
+            <a href="#">
+                <span>▥</span>
+                Hospitals
+            </a>
+
+            <a href="#">
+                <span>▦</span>
+                Blood Camps
+            </a>
+
+            <a href="#">
+                <span>♣</span>
+                Users
+            </a>
+
+            <a href="#">
+                <span>▤</span>
+                Reports
+            </a>
+
+            <a href="#">
+                <span>⚙</span>
+                Settings
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- MAIN -->
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div class="search-box">
+
+                🔍
+
+                <input
+                    type="text"
+                    id="requestSearch"
+                    placeholder="Search requests..."
+                >
+
+            </div>
+
+            <div class="user-area">
+
+                🔔
+
+                <div class="avatar">
+                    A
+                </div>
+
+                <span>Admin</span>
+
+            </div>
+
+        </header>
+
+
+        <div class="page-content">
+
+
+            <!-- PAGE HEADER -->
+
+            <div class="page-header">
+
+                <div>
+
+                    <p class="breadcrumb">
+                        Dashboard / Blood Requests
+                    </p>
+
+                    <h1>Blood Requests</h1>
+
+                    <p>
+                        Manage and process blood requests from patients and hospitals.
+                    </p>
+
+                </div>
+
+                <button
+                    class="add-btn"
+                    onclick="openRequestModal()"
+                >
+                    + New Request
+                </button>
+
+            </div>
+
+
+            <!-- STATISTICS -->
+
+            <div class="page-stats">
+
+                <div class="mini-card">
+                    <span>Total Requests</span>
+                    <strong>48</strong>
+                </div>
+
+                <div class="mini-card">
+                    <span>Pending</span>
+                    <strong class="orange-text">18</strong>
+                </div>
+
+                <div class="mini-card">
+                    <span>Approved</span>
+                    <strong class="green-text">22</strong>
+                </div>
+
+                <div class="mini-card">
+                    <span>Completed</span>
+                    <strong>8</strong>
+                </div>
+
+            </div>
+
+
+            <!-- REQUEST TABLE -->
+
+            <div class="panel table-panel">
+
+                <div class="panel-header">
+
+                    <h2>
+                        Recent Blood Requests
+                    </h2>
+
+                    <select id="requestFilter">
+
+                        <option value="all">
+                            All Requests
+                        </option>
+
+                        <option value="pending">
+                            Pending
+                        </option>
+
+                        <option value="approved">
+                            Approved
+                        </option>
+
+                        <option value="completed">
+                            Completed
+                        </option>
+
+                        <option value="rejected">
+                            Rejected
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="table-container">
+
+                    <table id="requestTable">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Request ID</th>
+                                <th>Patient</th>
+                                <th>Blood Group</th>
+                                <th>Units</th>
+                                <th>Hospital</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Action</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+
+                            <tr data-status="pending">
+
+                                <td>
+                                    <b>REQ001</b>
+                                </td>
+
+                                <td>
+                                    <div class="person">
+
+                                        <div class="person-avatar">
+                                            AR
+                                        </div>
+
+                                        <div>
+                                            <strong>Arjun</strong>
+                                            <small>Patient</small>
+                                        </div>
+
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <b class="blood large-blood">
+                                        O+
+                                    </b>
+                                </td>
+
+                                <td>2</td>
+
+                                <td>
+                                    Govt. Hospital
+                                </td>
+
+                                <td>
+                                    23 Sep 2026
+                                </td>
+
+                                <td>
+                                    <span class="status pending">
+                                        Pending
+                                    </span>
+                                </td>
+
+                                <td>
+
+                                    <button
+                                        class="approve-btn"
+                                        onclick="approveRequest(this)"
+                                    >
+                                        ✓
+                                    </button>
+
+                                    <button
+                                        class="reject-btn"
+                                        onclick="rejectRequest(this)"
+                                    >
+                                        ×
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+
+                            <tr data-status="approved">
+
+                                <td>
+                                    <b>REQ002</b>
+                                </td>
+
+                                <td>
+                                    <div class="person">
+
+                                        <div class="person-avatar">
+                                            ME
+                                        </div>
+
+                                        <div>
+                                            <strong>Meera</strong>
+                                            <small>Patient</small>
+                                        </div>
+
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <b class="blood large-blood">
+                                        A-
+                                    </b>
+                                </td>
+
+                                <td>1</td>
+
+                                <td>
+                                    City Care Hospital
+                                </td>
+
+                                <td>
+                                    22 Sep 2026
+                                </td>
+
+                                <td>
+                                    <span class="status active-status">
+                                        Approved
+                                    </span>
+                                </td>
+
+                                <td>
+
+                                    <button class="view-btn">
+                                        View
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+
+                            <tr data-status="pending">
+
+                                <td>
+                                    <b>REQ003</b>
+                                </td>
+
+                                <td>
+                                    <div class="person">
+
+                                        <div class="person-avatar">
+                                            RA
+                                        </div>
+
+                                        <div>
+                                            <strong>Rahul</strong>
+                                            <small>Patient</small>
+                                        </div>
+
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <b class="blood large-blood">
+                                        B+
+                                    </b>
+                                </td>
+
+                                <td>3</td>
+
+                                <td>
+                                    Life Care Hospital
+                                </td>
+
+                                <td>
+                                    21 Sep 2026
+                                </td>
+
+                                <td>
+                                    <span class="status pending">
+                                        Pending
+                                    </span>
+                                </td>
+
+                                <td>
+
+                                    <button
+                                        class="approve-btn"
+                                        onclick="approveRequest(this)"
+                                    >
+                                        ✓
+                                    </button>
+
+                                    <button
+                                        class="reject-btn"
+                                        onclick="rejectRequest(this)"
+                                    >
+                                        ×
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+
+                            <tr data-status="completed">
+
+                                <td>
+                                    <b>REQ004</b>
+                                </td>
+
+                                <td>
+                                    <div class="person">
+
+                                        <div class="person-avatar">
+                                            AN
+                                        </div>
+
+                                        <div>
+                                            <strong>Anjali</strong>
+                                            <small>Patient</small>
+                                        </div>
+
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <b class="blood large-blood">
+                                        AB+
+                                    </b>
+                                </td>
+
+                                <td>2</td>
+
+                                <td>
+                                    Metro Hospital
+                                </td>
+
+                                <td>
+                                    20 Sep 2026
+                                </td>
+
+                                <td>
+                                    <span class="status completed">
+                                        Completed
+                                    </span>
+                                </td>
+
+                                <td>
+
+                                    <button class="view-btn">
+                                        View
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+
+                            <tr data-status="rejected">
+
+                                <td>
+                                    <b>REQ005</b>
+                                </td>
+
+                                <td>
+                                    <div class="person">
+
+                                        <div class="person-avatar">
+                                            VI
+                                        </div>
+
+                                        <div>
+                                            <strong>Vishnu</strong>
+                                            <small>Patient</small>
+                                        </div>
+
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <b class="blood large-blood">
+                                        B-
+                                    </b>
+                                </td>
+
+                                <td>2</td>
+
+                                <td>
+                                    General Hospital
+                                </td>
+
+                                <td>
+                                    19 Sep 2026
+                                </td>
+
+                                <td>
+                                    <span class="status rejected">
+                                        Rejected
+                                    </span>
+                                </td>
+
+                                <td>
+
+                                    <button class="view-btn">
+                                        View
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<!-- NEW REQUEST MODAL -->
+
+<div class="modal" id="requestModal">
+
+    <div class="modal-card">
+
+        <div class="modal-header">
+
+            <h2>New Blood Request</h2>
+
+            <button onclick="closeRequestModal()">
+                ×
+            </button>
+
+        </div>
+
+
+        <form id="requestForm">
+
+
+            <div class="form-row">
+
+                <div>
+
+                    <label>Patient Name</label>
+
+                    <input
+                        type="text"
+                        id="patientName"
+                        required
+                    >
+
+                </div>
+
+
+                <div>
+
+                    <label>Blood Group</label>
+
+                    <select id="requestBlood" required>
+
+                        <option value="">
+                            Select
+                        </option>
+
+                        <option>A+</option>
+                        <option>A-</option>
+                        <option>B+</option>
+                        <option>B-</option>
+                        <option>AB+</option>
+                        <option>AB-</option>
+                        <option>O+</option>
+                        <option>O-</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-row">
+
+                <div>
+
+                    <label>Units Required</label>
+
+                    <input
+                        type="number"
+                        id="requestUnits"
+                        min="1"
+                        required
+                    >
+
+                </div>
+
+
+                <div>
+
+                    <label>Hospital</label>
+
+                    <input
+                        type="text"
+                        id="requestHospital"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="form-row single-row">
+
+                <div>
+
+                    <label>Reason</label>
+
+                    <textarea
+                        id="requestReason"
+                        rows="4"
+                        placeholder="Enter reason for blood requirement..."
+                    ></textarea>
+
+                </div>
+
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="cancel-btn"
+                    onclick="closeRequestModal()"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    type="submit"
+                    class="add-btn"
+                >
+                    Submit Request
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script src="js/api.js"></script>
+<script src="js/requests.js"></script>
+
+</body>
+</html>

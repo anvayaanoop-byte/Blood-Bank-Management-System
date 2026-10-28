@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>User Management - Blood Bank</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <link rel="stylesheet" href="css/user.css">
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            <div class="logo-icon">🩸</div>
+
+            <div>
+                <h2>Blood Bank</h2>
+                <span>Management System</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="dashboard.html">📊 <span>Dashboard</span></a>
+
+            <a href="donors.html">👤 <span>Donors</span></a>
+
+            <a href="blood-inventory.html">🩸 <span>Blood Inventory</span></a>
+
+            <a href="requests.html">📋 <span>Blood Requests</span></a>
+
+            <a href="patients.html">🏥 <span>Patients</span></a>
+
+            <a href="hospitals.html">🏨 <span>Hospitals</span></a>
+
+            <a href="camps.html">📅 <span>Blood Camps</span></a>
+
+            <a href="users.html" class="active">
+                👥 <span>Users</span>
+            </a>
+
+            <a href="reports.html">📈 <span>Reports</span></a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <a href="#">⚙️ <span>Settings</span></a>
+
+            <a href="index.html">🚪 <span>Logout</span></a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+
+            <div class="topbar-search">
+                🔍
+                <input
+                    type="text"
+                    placeholder="Search users..."
+                >
+            </div>
+
+            <div class="topbar-right">
+
+                <div class="notification">
+                    🔔
+                    <span class="notification-dot"></span>
+                </div>
+
+                <div class="user-profile">
+
+                    <div class="user-avatar">
+                        A
+                    </div>
+
+                    <div>
+                        <strong>Admin</strong>
+                        <small>Administrator</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- PAGE CONTENT -->
+        <section class="page-content">
+
+            <div class="page-header">
+
+                <div>
+                    <h1>User Management</h1>
+                    <p>Manage system users and access permissions</p>
+                </div>
+
+                <button
+                    class="add-btn"
+                    onclick="openUserModal()"
+                >
+                    + Add User
+                </button>
+
+            </div>
+
+
+            <!-- STATISTICS -->
+            <div class="page-stats">
+
+                <div class="mini-card">
+
+                    <div class="mini-card-icon">
+                        👥
+                    </div>
+
+                    <div>
+                        <span>Total Users</span>
+                        <h3>28</h3>
+                    </div>
+
+                </div>
+
+
+                <div class="mini-card">
+
+                    <div class="mini-card-icon">
+                        🟢
+                    </div>
+
+                    <div>
+                        <span>Active Users</span>
+                        <h3>24</h3>
+                    </div>
+
+                </div>
+
+
+                <div class="mini-card">
+
+                    <div class="mini-card-icon">
+                        👑
+                    </div>
+
+                    <div>
+                        <span>Administrators</span>
+                        <h3>3</h3>
+                    </div>
+
+                </div>
+
+
+                <div class="mini-card">
+
+                    <div class="mini-card-icon">
+                        🏥
+                    </div>
+
+                    <div>
+                        <span>Hospital Staff</span>
+                        <h3>9</h3>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- USER TABLE -->
+            <div class="table-panel user-table-panel">
+
+                <div class="table-header">
+
+                    <div>
+                        <h2>System Users</h2>
+                        <p>Registered users and their access roles</p>
+                    </div>
+
+                    <div class="user-controls">
+
+                        <input
+                            type="text"
+                            id="userSearch"
+                            placeholder="Search users..."
+                        >
+
+                        <select id="userRoleFilter">
+
+                            <option value="all">
+                                All Roles
+                            </option>
+
+                            <option value="Admin">
+                                Admin
+                            </option>
+
+                            <option value="Staff">
+                                Staff
+                            </option>
+
+                            <option value="Hospital">
+                                Hospital
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="table-responsive">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>User</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Role</th>
+                                <th>Last Login</th>
+                                <th>Status</th>
+                                <th>Action</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="userTableBody">
+
+
+                            <!-- USER 1 -->
+
+                            <tr>
+
+                                <td>
+
+                                    <div class="user-info">
+
+                                        <div class="user-table-avatar">
+                                            AD
+                                        </div>
+
+                                        <div>
+
+                                            <strong>
+                                                Admin User
+                                            </strong>
+
+                                            <small>
+                                                USR001
+                                            </small>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+
+                                <td>
+                                    admin@bloodbank.com
+                                </td>
+
+
+                                <td>
+                                    +91 98765 43210
+                                </td>
+
+
+                                <td>
+
+                                    <span class="role-badge admin">
+                                        Admin
+                                    </span>
+
+                                </td>
+
+
+                                <td>
+                                    Today, 10:30 AM
+                                </td>
+
+
+                                <td>
+
+                                    <span class="user-status active">
+                                        ● Active
+                                    </span>
+
+                                </td>
+
+
+                                <td>
+
+                                    <div class="user-actions">
+
+                                        <button class="user-action-btn">
+                                            👁
+                                        </button>
+
+                                        <button class="user-action-btn">
+                                            ✏️
+                                        </button>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+
+
+                            <!-- USER 2 -->
+
+                            <tr>
+
+                                <td>
+
+                                    <div class="user-info">
+
+                                        <div class="user-table-avatar">
+                                            RK
+                                        </div>
+
+                                        <div>
+
+                                            <strong>
+                                                Rahul Kumar
+                                            </strong>
+
+                                            <small>
+                                                USR002
+                                            </small>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+
+                                <td>
+                                    rahul@bloodbank.com
+                                </td>
+
+
+                                <td>
+                                    +91 98470 12345
+                                </td>
+
+
+                                <td>
+
+                                    <span class="role-badge staff">
+                                        Staff
+                                    </span>
+
+                                </td>
+
+
+                                <td>
+                                    Today, 09:45 AM
+                                </td>
+
+
+                                <td>
+
+                                    <span class="user-status active">
+                                        ● Active
+                                    </span>
+
+                                </td>
+
+
+                                <td>
+
+                                    <div class="user-actions">
+
+                                        <button class="user-action-btn">
+                                            👁
+                                        </button>
+
+                                        <button class="user-action-btn">
+                                            ✏️
+                                        </button>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+
+
+                            <!-- USER 3 -->
+
+                            <tr>
+
+                                <td>
+
+                                    <div class="user-info">
+
+                                        <div class="user-table-avatar">
+                                            MS
+                                        </div>
+
+                                        <div>
+
+                                            <strong>
+                                                Meera Shah
+                                            </strong>
+
+                                            <small>
+                                                USR003
+                                            </small>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+
+                                <td>
+                                    meera@citycare.com
+                                </td>
+
+
+                                <td>
+                                    +91 99610 56789
+                                </td>
+
+
+                                <td>
+
+                                    <span class="role-badge hospital">
+                                        Hospital
+                                    </span>
+
+                                </td>
+
+
+                                <td>
+                                    Yesterday, 04:20 PM
+                                </td>
+
+
+                                <td>
+
+                                    <span class="user-status active">
+                                        ● Active
+                                    </span>
+
+                                </td>
+
+
+                                <td>
+
+                                    <div class="user-actions">
+
+                                        <button class="user-action-btn">
+                                            👁
+                                        </button>
+
+                                        <button class="user-action-btn">
+                                            ✏️
+                                        </button>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+
+
+                            <!-- USER 4 -->
+
+                            <tr>
+
+                                <td>
+
+                                    <div class="user-info">
+
+                                        <div class="user-table-avatar">
+                                            AS
+                                        </div>
+
+                                        <div>
+
+                                            <strong>
+                                                Anjali Singh
+                                            </strong>
+
+                                            <small>
+                                                USR004
+                                            </small>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+
+                                <td>
+                                    anjali@bloodbank.com
+                                </td>
+
+
+                                <td>
+                                    +91 98950 67890
+                                </td>
+
+
+                                <td>
+
+                                    <span class="role-badge staff">
+                                        Staff
+                                    </span>
+
+                                </td>
+
+
+                                <td>
+                                    20 Sep 2026
+                                </td>
+
+
+                                <td>
+
+                                    <span class="user-status inactive">
+                                        ● Inactive
+                                    </span>
+
+                                </td>
+
+
+                                <td>
+
+                                    <div class="user-actions">
+
+                                        <button class="user-action-btn">
+                                            👁
+                                        </button>
+
+                                        <button class="user-action-btn">
+                                            ✏️
+                                        </button>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- ADD USER MODAL -->
+
+<div
+    class="modal-overlay"
+    id="userModal"
+>
+
+    <div class="modal">
+
+        <div class="modal-header">
+
+            <div>
+
+                <h2>Add User</h2>
+
+                <p>
+                    Create a new system user
+                </p>
+
+            </div>
+
+            <button
+                class="modal-close"
+                onclick="closeUserModal()"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <form id="userForm">
+
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label>
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="userName"
+                        placeholder="Enter full name"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Phone
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="userPhone"
+                        placeholder="+91 XXXXX XXXXX"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    id="userEmail"
+                    placeholder="user@email.com"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label>
+                        Role
+                    </label>
+
+                    <select
+                        id="userRole"
+                        required
+                    >
+
+                        <option value="">
+                            Select Role
+                        </option>
+
+                        <option value="Admin">
+                            Admin
+                        </option>
+
+                        <option value="Staff">
+                            Staff
+                        </option>
+
+                        <option value="Hospital">
+                            Hospital
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Status
+                    </label>
+
+                    <select
+                        id="userStatus"
+                    >
+
+                        <option value="Active">
+                            Active
+                        </option>
+
+                        <option value="Inactive">
+                            Inactive
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="userPassword"
+                    placeholder="Create password"
+                    required
+                >
+
+            </div>
+
+
+            <div class="modal-footer">
+
+                <button
+                    type="button"
+                    class="cancel-btn"
+                    onclick="closeUserModal()"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    type="submit"
+                    class="save-btn"
+                >
+                    Add User
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script src="js/api.js"></script>
+<script src="js/users.js"></script>
+
+</body>
+</html>

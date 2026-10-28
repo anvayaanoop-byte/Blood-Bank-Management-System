@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donor Management - Blood Bank</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/pages.css">
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="blood-logo">♥</div>
+            <div>
+                <h2>Blood Bank</h2>
+                <span>Management System</span>
+            </div>
+        </div>
+
+        <nav>
+            <a href="dashboard.html">
+                <span>⌂</span> Dashboard
+            </a>
+
+            <a class="active" href="donors.html">
+                <span>♟</span> Donors
+            </a>
+
+            <a href="#">
+                <span>🩸</span> Blood Inventory
+            </a>
+
+            <a href="#">
+                <span>▣</span> Blood Requests
+            </a>
+
+            <a href="#">
+                <span>●</span> Patients
+            </a>
+
+            <a href="#">
+                <span>▥</span> Hospitals
+            </a>
+
+            <a href="#">
+                <span>▦</span> Blood Camps
+            </a>
+
+            <a href="#">
+                <span>♣</span> Users
+            </a>
+
+            <a href="#">
+                <span>▤</span> Reports
+            </a>
+
+            <a href="#">
+                <span>⚙</span> Settings
+            </a>
+        </nav>
+
+    </aside>
+
+
+    <!-- MAIN -->
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div class="search-box">
+                🔍
+                <input
+                    type="text"
+                    id="donorSearch"
+                    placeholder="Search donors..."
+                >
+            </div>
+
+            <div class="user-area">
+                🔔
+                <div class="avatar">A</div>
+                <span>Admin</span>
+            </div>
+
+        </header>
+
+
+        <div class="page-content">
+
+            <!-- PAGE HEADER -->
+
+            <div class="page-header">
+
+                <div>
+                    <p class="breadcrumb">
+                        Dashboard / Donors
+                    </p>
+
+                    <h1>Donor Management</h1>
+
+                    <p>
+                        Manage registered blood donors and their information.
+                    </p>
+                </div>
+
+                <button class="add-btn" onclick="openDonorModal()">
+                    + Add Donor
+                </button>
+
+            </div>
+
+
+            <!-- STAT CARDS -->
+
+            <div class="page-stats">
+
+                <div class="mini-card">
+                    <span>Total Donors</span>
+                    <strong>125</strong>
+                </div>
+
+                <div class="mini-card">
+                    <span>Active Donors</span>
+                    <strong>98</strong>
+                </div>
+
+                <div class="mini-card">
+                    <span>This Month</span>
+                    <strong>24</strong>
+                </div>
+
+                <div class="mini-card">
+                    <span>Available</span>
+                    <strong>87</strong>
+                </div>
+
+            </div>
+
+
+            <!-- DONOR TABLE -->
+
+            <div class="panel table-panel">
+
+                <div class="panel-header">
+
+                    <h2>Registered Donors</h2>
+
+                    <select id="bloodFilter">
+
+                        <option value="all">
+                            All Blood Groups
+                        </option>
+
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                        <option value="B-">B-</option>
+                        <option value="AB+">AB+</option>
+                        <option value="AB-">AB-</option>
+                        <option value="O+">O+</option>
+                        <option value="O-">O-</option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="table-container">
+
+                    <table id="donorTable">
+
+                        <thead>
+
+                            <tr>
+                                <th>Donor</th>
+                                <th>Blood Group</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+                                <th>Last Donation</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr data-group="A+">
+
+                                <td>
+                                    <div class="person">
+                                        <div class="person-avatar">AT</div>
+
+                                        <div>
+                                            <strong>Anamika TV</strong>
+                                            <small>DON001</small>
+                                        </div>
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <b class="blood">A+</b>
+                                </td>
+
+                                <td>9876543210</td>
+
+                                <td>anamika@email.com</td>
+
+                                <td>12 Aug 2026</td>
+
+                                <td>
+                                    <span class="status active-status">
+                                        Active
+                                    </span>
+                                </td>
+
+                                <td>
+                                    <button class="action-btn">
+                                        ⋮
+                                    </button>
+                                </td>
+
+                            </tr>
+
+
+                            <tr data-group="B+">
+
+                                <td>
+                                    <div class="person">
+                                        <div class="person-avatar">NR</div>
+
+                                        <div>
+                                            <strong>Nidha Rasheed</strong>
+                                            <small>DON002</small>
+                                        </div>
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <b class="blood">B+</b>
+                                </td>
+
+                                <td>9876501234</td>
+
+                                <td>nidha@email.com</td>
+
+                                <td>05 Aug 2026</td>
+
+                                <td>
+                                    <span class="status active-status">
+                                        Active
+                                    </span>
+                                </td>
+
+                                <td>
+                                    <button class="action-btn">
+                                        ⋮
+                                    </button>
+                                </td>
+
+                            </tr>
+
+
+                            <tr data-group="O+">
+
+                                <td>
+                                    <div class="person">
+                                        <div class="person-avatar">AA</div>
+
+                                        <div>
+                                            <strong>Anvaya Anoop</strong>
+                                            <small>DON003</small>
+                                        </div>
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <b class="blood">O+</b>
+                                </td>
+
+                                <td>9876123456</td>
+
+                                <td>anvaya@email.com</td>
+
+                                <td>28 Jul 2026</td>
+
+                                <td>
+                                    <span class="status active-status">
+                                        Active
+                                    </span>
+                                </td>
+
+                                <td>
+                                    <button class="action-btn">
+                                        ⋮
+                                    </button>
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<!-- ADD DONOR MODAL -->
+
+<div class="modal" id="donorModal">
+
+    <div class="modal-card">
+
+        <div class="modal-header">
+
+            <h2>Add New Donor</h2>
+
+            <button onclick="closeDonorModal()">
+                ×
+            </button>
+
+        </div>
+
+        <form id="donorForm">
+
+            <div class="form-row">
+
+                <div>
+                    <label>Full Name</label>
+                    <input
+                        type="text"
+                        id="donorName"
+                        required
+                    >
+                </div>
+
+                <div>
+                    <label>Blood Group</label>
+
+                    <select id="donorBlood" required>
+
+                        <option value="">
+                            Select
+                        </option>
+
+                        <option>A+</option>
+                        <option>A-</option>
+                        <option>B+</option>
+                        <option>B-</option>
+                        <option>AB+</option>
+                        <option>AB-</option>
+                        <option>O+</option>
+                        <option>O-</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-row">
+
+                <div>
+                    <label>Phone</label>
+
+                    <input
+                        type="tel"
+                        id="donorPhone"
+                        required
+                    >
+                </div>
+
+                <div>
+                    <label>Email</label>
+
+                    <input
+                        type="email"
+                        id="donorEmail"
+                        required
+                    >
+                </div>
+
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="cancel-btn"
+                    onclick="closeDonorModal()"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    type="submit"
+                    class="add-btn"
+                >
+                    Add Donor
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script src="js/api.js"></script>
+<script src="js/donors.js"></script>
+
+</body>
+</html>

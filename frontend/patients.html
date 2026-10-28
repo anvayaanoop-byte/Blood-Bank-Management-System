@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <link rel="stylesheet" href="css/patients.css">
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="blood-logo">♥</div>
+
+            <div>
+                <h2>Blood Bank</h2>
+                <span>Management System</span>
+            </div>
+
+        </div>
+
+        <nav>
+
+            <a href="dashboard.html">
+                <span>⌂</span>
+                Dashboard
+            </a>
+
+            <a href="donors.html">
+                <span>♟</span>
+                Donors
+            </a>
+
+            <a href="blood-inventory.html">
+                <span>🩸</span>
+                Blood Inventory
+            </a>
+
+            <a href="requests.html">
+                <span>▣</span>
+                Blood Requests
+            </a>
+
+            <a class="active" href="patients.html">
+                <span>●</span>
+                Patients
+            </a>
+
+            <a href="#">
+                <span>▥</span>
+                Hospitals
+            </a>
+
+            <a href="#">
+                <span>▦</span>
+                Blood Camps
+            </a>
+
+            <a href="#">
+                <span>♣</span>
+                Users
+            </a>
+
+            <a href="#">
+                <span>▤</span>
+                Reports
+            </a>
+
+            <a href="#">
+                <span>⚙</span>
+                Settings
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main-content">
+
+        <!-- HEADER -->
+
+        <header class="topbar">
+
+            <div class="search-box">
+
+                🔍
+
+                <input
+                    type="text"
+                    id="patientSearch"
+                    placeholder="Search patients..."
+                >
+
+            </div>
+
+            <div class="user-area">
+
+                🔔
+
+                <div class="avatar">
+                    A
+                </div>
+
+                <span>Admin</span>
+
+            </div>
+
+        </header>
+
+
+        <!-- PAGE -->
+
+        <div class="page-content">
+
+            <!-- PAGE HEADER -->
+
+            <div class="page-header">
+
+                <div>
+
+                    <p class="breadcrumb">
+                        Dashboard / Patients
+                    </p>
+
+                    <h1>Patient Management</h1>
+
+                    <p>
+                        Manage patient records and blood requirements.
+                    </p>
+
+                </div>
+
+                <button
+                    class="add-btn"
+                    onclick="openPatientModal()"
+                >
+                    + Add Patient
+                </button>
+
+            </div>
+
+
+            <!-- STATISTICS -->
+
+            <div class="page-stats">
+
+                <div class="mini-card">
+
+                    <span>Total Patients</span>
+
+                    <strong>
+                        86
+                    </strong>
+
+                </div>
+
+
+                <div class="mini-card">
+
+                    <span>Active Cases</span>
+
+                    <strong class="red-text">
+                        18
+                    </strong>
+
+                </div>
+
+
+                <div class="mini-card">
+
+                    <span>Blood Required</span>
+
+                    <strong class="orange-text">
+                        32
+                    </strong>
+
+                </div>
+
+
+                <div class="mini-card">
+
+                    <span>Completed Cases</span>
+
+                    <strong class="green-text">
+                        54
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- PATIENT TABLE -->
+
+            <div class="panel table-panel">
+
+                <div class="panel-header">
+
+                    <h2>
+                        Registered Patients
+                    </h2>
+
+                    <select id="patientBloodFilter">
+
+                        <option value="all">
+                            All Blood Groups
+                        </option>
+
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                        <option value="B-">B-</option>
+                        <option value="AB+">AB+</option>
+                        <option value="AB-">AB-</option>
+                        <option value="O+">O+</option>
+                        <option value="O-">O-</option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="table-container">
+
+                    <table id="patientTable">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Patient</th>
+                                <th>Blood Group</th>
+                                <th>Age</th>
+                                <th>Phone</th>
+                                <th>Hospital</th>
+                                <th>Requirement</th>
+                                <th>Status</th>
+                                <th>Action</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+
+                            <tr data-group="O+">
+
+                                <td>
+
+                                    <div class="person">
+
+                                        <div class="person-avatar">
+                                            AR
+                                        </div>
+
+                                        <div>
+
+                                            <strong>
+                                                Arjun
+                                            </strong>
+
+                                            <small>
+                                                PAT001
+                                            </small>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+                                <td>
+                                    <b class="blood large-blood">
+                                        O+
+                                    </b>
+                                </td>
+
+                                <td>
+                                    28
+                                </td>
+
+                                <td>
+                                    9876543210
+                                </td>
+
+                                <td>
+                                    Govt. Hospital
+                                </td>
+
+                                <td>
+                                    2 Units
+                                </td>
+
+                                <td>
+                                    <span class="status pending">
+                                        Active
+                                    </span>
+                                </td>
+
+                                <td>
+                                    <button class="view-btn">
+                                        View
+                                    </button>
+                                </td>
+
+                            </tr>
+
+
+                            <tr data-group="A-">
+
+                                <td>
+
+                                    <div class="person">
+
+                                        <div class="person-avatar">
+                                            ME
+                                        </div>
+
+                                        <div>
+
+                                            <strong>
+                                                Meera
+                                            </strong>
+
+                                            <small>
+                                                PAT002
+                                            </small>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+                                <td>
+                                    <b class="blood large-blood">
+                                        A-
+                                    </b>
+                                </td>
+
+                                <td>
+                                    34
+                                </td>
+
+                                <td>
+                                    9876501234
+                                </td>
+
+                                <td>
+                                    City Care Hospital
+                                </td>
+
+                                <td>
+                                    1 Unit
+                                </td>
+
+                                <td>
+                                    <span class="status active-status">
+                                        Completed
+                                    </span>
+                                </td>
+
+                                <td>
+                                    <button class="view-btn">
+                                        View
+                                    </button>
+                                </td>
+
+                            </tr>
+
+
+                            <tr data-group="B+">
+
+                                <td>
+
+                                    <div class="person">
+
+                                        <div class="person-avatar">
+                                            RA
+                                        </div>
+
+                                        <div>
+
+                                            <strong>
+                                                Rahul
+                                            </strong>
+
+                                            <small>
+                                                PAT003
+                                            </small>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+                                <td>
+                                    <b class="blood large-blood">
+                                        B+
+                                    </b>
+                                </td>
+
+                                <td>
+                                    41
+                                </td>
+
+                                <td>
+                                    9876123456
+                                </td>
+
+                                <td>
+                                    Life Care Hospital
+                                </td>
+
+                                <td>
+                                    3 Units
+                                </td>
+
+                                <td>
+                                    <span class="status pending">
+                                        Active
+                                    </span>
+                                </td>
+
+                                <td>
+                                    <button class="view-btn">
+                                        View
+                                    </button>
+                                </td>
+
+                            </tr>
+
+
+                            <tr data-group="AB+">
+
+                                <td>
+
+                                    <div class="person">
+
+                                        <div class="person-avatar">
+                                            AN
+                                        </div>
+
+                                        <div>
+
+                                            <strong>
+                                                Anjali
+                                            </strong>
+
+                                            <small>
+                                                PAT004
+                                            </small>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+                                <td>
+                                    <b class="blood large-blood">
+                                        AB+
+                                    </b>
+                                </td>
+
+                                <td>
+                                    25
+                                </td>
+
+                                <td>
+                                    9876123450
+                                </td>
+
+                                <td>
+                                    Metro Hospital
+                                </td>
+
+                                <td>
+                                    2 Units
+                                </td>
+
+                                <td>
+                                    <span class="status active-status">
+                                        Completed
+                                    </span>
+                                </td>
+
+                                <td>
+                                    <button class="view-btn">
+                                        View
+                                    </button>
+                                </td>
+
+                            </tr>
+
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<!-- ADD PATIENT MODAL -->
+
+<div class="modal" id="patientModal">
+
+    <div class="modal-card">
+
+        <div class="modal-header">
+
+            <h2>Add New Patient</h2>
+
+            <button onclick="closePatientModal()">
+                ×
+            </button>
+
+        </div>
+
+
+        <form id="patientForm">
+
+
+            <div class="form-row">
+
+                <div>
+
+                    <label>Patient Name</label>
+
+                    <input
+                        type="text"
+                        id="patientName"
+                        required
+                    >
+
+                </div>
+
+
+                <div>
+
+                    <label>Age</label>
+
+                    <input
+                        type="number"
+                        id="patientAge"
+                        min="1"
+                        max="120"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="form-row">
+
+                <div>
+
+                    <label>Blood Group</label>
+
+                    <select
+                        id="patientBlood"
+                        required
+                    >
+
+                        <option value="">
+                            Select Blood Group
+                        </option>
+
+                        <option>A+</option>
+                        <option>A-</option>
+                        <option>B+</option>
+                        <option>B-</option>
+                        <option>AB+</option>
+                        <option>AB-</option>
+                        <option>O+</option>
+                        <option>O-</option>
+
+                    </select>
+
+                </div>
+
+
+                <div>
+
+                    <label>Phone</label>
+
+                    <input
+                        type="tel"
+                        id="patientPhone"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="form-row">
+
+                <div>
+
+                    <label>Hospital</label>
+
+                    <input
+                        type="text"
+                        id="patientHospital"
+                        required
+                    >
+
+                </div>
+
+
+                <div>
+
+                    <label>Units Required</label>
+
+                    <input
+                        type="number"
+                        id="patientUnits"
+                        min="1"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="cancel-btn"
+                    onclick="closePatientModal()"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    type="submit"
+                    class="add-btn"
+                >
+                    Add Patient
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script src="js/api.js"></script>
+<script src="js/patients.js"></script>
+
+</body>
+
+</html>

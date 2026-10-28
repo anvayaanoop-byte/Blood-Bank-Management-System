@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Blood Inventory - Blood Bank</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <link rel="stylesheet" href="css/inventory.css">
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="blood-logo">♥</div>
+
+            <div>
+                <h2>Blood Bank</h2>
+                <span>Management System</span>
+            </div>
+
+        </div>
+
+        <nav>
+
+            <a href="dashboard.html">
+                <span>⌂</span>
+                Dashboard
+            </a>
+
+            <a href="donors.html">
+                <span>♟</span>
+                Donors
+            </a>
+
+            <a class="active" href="blood-inventory.html">
+                <span>🩸</span>
+                Blood Inventory
+            </a>
+
+            <a href="#">
+                <span>▣</span>
+                Blood Requests
+            </a>
+
+            <a href="#">
+                <span>●</span>
+                Patients
+            </a>
+
+            <a href="#">
+                <span>▥</span>
+                Hospitals
+            </a>
+
+            <a href="#">
+                <span>▦</span>
+                Blood Camps
+            </a>
+
+            <a href="#">
+                <span>♣</span>
+                Users
+            </a>
+
+            <a href="#">
+                <span>▤</span>
+                Reports
+            </a>
+
+            <a href="#">
+                <span>⚙</span>
+                Settings
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main-content">
+
+        <!-- HEADER -->
+
+        <header class="topbar">
+
+            <div class="search-box">
+
+                🔍
+
+                <input
+                    type="text"
+                    id="inventorySearch"
+                    placeholder="Search blood group..."
+                >
+
+            </div>
+
+            <div class="user-area">
+
+                🔔
+
+                <div class="avatar">
+                    A
+                </div>
+
+                <span>Admin</span>
+
+            </div>
+
+        </header>
+
+
+        <!-- PAGE -->
+
+        <div class="page-content">
+
+            <div class="page-header">
+
+                <div>
+
+                    <p class="breadcrumb">
+                        Dashboard / Blood Inventory
+                    </p>
+
+                    <h1>Blood Inventory</h1>
+
+                    <p>
+                        Monitor available blood units and stock levels.
+                    </p>
+
+                </div>
+
+                <button
+                    class="add-btn"
+                    onclick="openStockModal()"
+                >
+                    + Add Blood Stock
+                </button>
+
+            </div>
+
+
+            <!-- SUMMARY -->
+
+            <div class="page-stats">
+
+                <div class="mini-card">
+                    <span>Total Blood Units</span>
+                    <strong>320</strong>
+                </div>
+
+                <div class="mini-card">
+                    <span>Available Units</span>
+                    <strong class="green-text">287</strong>
+                </div>
+
+                <div class="mini-card">
+                    <span>Reserved Units</span>
+                    <strong class="orange-text">21</strong>
+                </div>
+
+                <div class="mini-card">
+                    <span>Critical Groups</span>
+                    <strong class="red-text">2</strong>
+                </div>
+
+            </div>
+
+
+            <!-- BLOOD CARDS -->
+
+            <div class="blood-grid">
+
+
+                <div class="blood-card">
+
+                    <div class="blood-top">
+
+                        <div class="blood-type">
+                            A+
+                        </div>
+
+                        <span class="stock-status available">
+                            Available
+                        </span>
+
+                    </div>
+
+                    <h2>45</h2>
+
+                    <p>Blood Units</p>
+
+                    <div class="stock-bar">
+                        <div style="width: 72%;"></div>
+                    </div>
+
+                    <small>
+                        72% of capacity
+                    </small>
+
+                </div>
+
+
+                <div class="blood-card">
+
+                    <div class="blood-top">
+
+                        <div class="blood-type">
+                            A-
+                        </div>
+
+                        <span class="stock-status available">
+                            Available
+                        </span>
+
+                    </div>
+
+                    <h2>18</h2>
+
+                    <p>Blood Units</p>
+
+                    <div class="stock-bar">
+                        <div style="width: 36%;"></div>
+                    </div>
+
+                    <small>
+                        36% of capacity
+                    </small>
+
+                </div>
+
+
+                <div class="blood-card">
+
+                    <div class="blood-top">
+
+                        <div class="blood-type">
+                            B+
+                        </div>
+
+                        <span class="stock-status available">
+                            Available
+                        </span>
+
+                    </div>
+
+                    <h2>32</h2>
+
+                    <p>Blood Units</p>
+
+                    <div class="stock-bar">
+                        <div style="width: 55%;"></div>
+                    </div>
+
+                    <small>
+                        55% of capacity
+                    </small>
+
+                </div>
+
+
+                <div class="blood-card critical">
+
+                    <div class="blood-top">
+
+                        <div class="blood-type">
+                            B-
+                        </div>
+
+                        <span class="stock-status critical-status">
+                            Low Stock
+                        </span>
+
+                    </div>
+
+                    <h2>12</h2>
+
+                    <p>Blood Units</p>
+
+                    <div class="stock-bar">
+                        <div style="width: 20%;"></div>
+                    </div>
+
+                    <small>
+                        Replenishment needed
+                    </small>
+
+                </div>
+
+
+                <div class="blood-card">
+
+                    <div class="blood-top">
+
+                        <div class="blood-type">
+                            AB+
+                        </div>
+
+                        <span class="stock-status available">
+                            Available
+                        </span>
+
+                    </div>
+
+                    <h2>20</h2>
+
+                    <p>Blood Units</p>
+
+                    <div class="stock-bar">
+                        <div style="width: 40%;"></div>
+                    </div>
+
+                    <small>
+                        40% of capacity
+                    </small>
+
+                </div>
+
+
+                <div class="blood-card critical">
+
+                    <div class="blood-top">
+
+                        <div class="blood-type">
+                            AB-
+                        </div>
+
+                        <span class="stock-status critical-status">
+                            Low Stock
+                        </span>
+
+                    </div>
+
+                    <h2>8</h2>
+
+                    <p>Blood Units</p>
+
+                    <div class="stock-bar">
+                        <div style="width: 15%;"></div>
+                    </div>
+
+                    <small>
+                        Replenishment needed
+                    </small>
+
+                </div>
+
+
+                <div class="blood-card">
+
+                    <div class="blood-top">
+
+                        <div class="blood-type">
+                            O+
+                        </div>
+
+                        <span class="stock-status available">
+                            Available
+                        </span>
+
+                    </div>
+
+                    <h2>65</h2>
+
+                    <p>Blood Units</p>
+
+                    <div class="stock-bar">
+                        <div style="width: 90%;"></div>
+                    </div>
+
+                    <small>
+                        90% of capacity
+                    </small>
+
+                </div>
+
+
+                <div class="blood-card">
+
+                    <div class="blood-top">
+
+                        <div class="blood-type">
+                            O-
+                        </div>
+
+                        <span class="stock-status available">
+                            Available
+                        </span>
+
+                    </div>
+
+                    <h2>10</h2>
+
+                    <p>Blood Units</p>
+
+                    <div class="stock-bar">
+                        <div style="width: 22%;"></div>
+                    </div>
+
+                    <small>
+                        22% of capacity
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- INVENTORY TABLE -->
+
+            <div class="panel table-panel inventory-table">
+
+                <div class="panel-header">
+
+                    <h2>
+                        Blood Stock Details
+                    </h2>
+
+                    <select id="stockFilter">
+
+                        <option value="all">
+                            All Groups
+                        </option>
+
+                        <option value="available">
+                            Available
+                        </option>
+
+                        <option value="low">
+                            Low Stock
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="table-container">
+
+                    <table id="stockTable">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Blood Group</th>
+                                <th>Total Units</th>
+                                <th>Available</th>
+                                <th>Reserved</th>
+                                <th>Last Updated</th>
+                                <th>Status</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+                            <tr data-status="available">
+
+                                <td>
+                                    <b class="blood large-blood">
+                                        A+
+                                    </b>
+                                </td>
+
+                                <td>45</td>
+
+                                <td>40</td>
+
+                                <td>5</td>
+
+                                <td>23 Sep 2026</td>
+
+                                <td>
+                                    <span class="status active-status">
+                                        Available
+                                    </span>
+                                </td>
+
+                            </tr>
+
+
+                            <tr data-status="available">
+
+                                <td>
+                                    <b class="blood large-blood">
+                                        A-
+                                    </b>
+                                </td>
+
+                                <td>18</td>
+
+                                <td>16</td>
+
+                                <td>2</td>
+
+                                <td>23 Sep 2026</td>
+
+                                <td>
+                                    <span class="status active-status">
+                                        Available
+                                    </span>
+                                </td>
+
+                            </tr>
+
+
+                            <tr data-status="available">
+
+                                <td>
+                                    <b class="blood large-blood">
+                                        B+
+                                    </b>
+                                </td>
+
+                                <td>32</td>
+
+                                <td>28</td>
+
+                                <td>4</td>
+
+                                <td>22 Sep 2026</td>
+
+                                <td>
+                                    <span class="status active-status">
+                                        Available
+                                    </span>
+                                </td>
+
+                            </tr>
+
+
+                            <tr data-status="low">
+
+                                <td>
+                                    <b class="blood large-blood">
+                                        B-
+                                    </b>
+                                </td>
+
+                                <td>12</td>
+
+                                <td>9</td>
+
+                                <td>3</td>
+
+                                <td>22 Sep 2026</td>
+
+                                <td>
+                                    <span class="status pending">
+                                        Low Stock
+                                    </span>
+                                </td>
+
+                            </tr>
+
+
+                            <tr data-status="available">
+
+                                <td>
+                                    <b class="blood large-blood">
+                                        O+
+                                    </b>
+                                </td>
+
+                                <td>65</td>
+
+                                <td>60</td>
+
+                                <td>5</td>
+
+                                <td>23 Sep 2026</td>
+
+                                <td>
+                                    <span class="status active-status">
+                                        Available
+                                    </span>
+                                </td>
+
+                            </tr>
+
+
+                            <tr data-status="available">
+
+                                <td>
+                                    <b class="blood large-blood">
+                                        O-
+                                    </b>
+                                </td>
+
+                                <td>10</td>
+
+                                <td>8</td>
+
+                                <td>2</td>
+
+                                <td>21 Sep 2026</td>
+
+                                <td>
+                                    <span class="status active-status">
+                                        Available
+                                    </span>
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<!-- ADD STOCK MODAL -->
+
+<div class="modal" id="stockModal">
+
+    <div class="modal-card">
+
+        <div class="modal-header">
+
+            <h2>Add Blood Stock</h2>
+
+            <button onclick="closeStockModal()">
+                ×
+            </button>
+
+        </div>
+
+
+        <form id="stockForm">
+
+            <div class="form-row">
+
+                <div>
+
+                    <label>Blood Group</label>
+
+                    <select id="stockBlood" required>
+
+                        <option value="">
+                            Select Blood Group
+                        </option>
+
+                        <option>A+</option>
+                        <option>A-</option>
+                        <option>B+</option>
+                        <option>B-</option>
+                        <option>AB+</option>
+                        <option>AB-</option>
+                        <option>O+</option>
+                        <option>O-</option>
+
+                    </select>
+
+                </div>
+
+
+                <div>
+
+                    <label>Number of Units</label>
+
+                    <input
+                        type="number"
+                        id="stockUnits"
+                        min="1"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="cancel-btn"
+                    onclick="closeStockModal()"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    type="submit"
+                    class="add-btn"
+                >
+                    Add Stock
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script src="js/api.js"></script>
+<script src="js/inventory.js"></script>
+
+</body>
+</html>
